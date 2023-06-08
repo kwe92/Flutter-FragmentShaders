@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+// TODO: Remove state with Provider package
+
 class TickingBuilder extends StatefulWidget {
   const TickingBuilder({super.key, required this.builder});
   final Widget Function(BuildContext context, double time) builder;
@@ -12,8 +14,7 @@ class TickingBuilder extends StatefulWidget {
   State<TickingBuilder> createState() => _TickingBuilderState();
 }
 
-class _TickingBuilderState extends State<TickingBuilder>
-    with SingleTickerProviderStateMixin {
+class _TickingBuilderState extends State<TickingBuilder> with SingleTickerProviderStateMixin {
   late final Ticker _ticker;
   double _time = 0.0;
 

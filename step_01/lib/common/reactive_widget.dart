@@ -2,12 +2,13 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+// TODO: Remove state with Provider package
+
 import 'package:flutter/material.dart';
 
 import 'ticking_builder.dart';
 
-typedef ReactiveWidgetBuilder = Widget Function(
-    BuildContext context, double time, Size bounds);
+typedef ReactiveWidgetBuilder = Widget Function(BuildContext context, double time, Size bounds);
 
 class ReactiveWidget extends StatefulWidget {
   const ReactiveWidget({
