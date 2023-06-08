@@ -1,5 +1,8 @@
 // ignore_for_file: unused_import
 
+// TODO: Move to FlutterWidgets repo
+// ?? new package extra_alignments.dart
+import 'package:extra_alignments/extra_alignments.dart';
 import 'package:flutter/material.dart';
 
 import '../assets.dart';
@@ -19,51 +22,46 @@ class TitleScreen extends StatelessWidget {
     // final emitColor = AppColors.emitColors[0];
     final orbColor = Colors.blueAccent;
     final emitColor = Color.fromRGBO(255, 103, 1, 1);
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(
-          child: Stack(
-            // Image Plans: Background, Middle-ground, Foreground
-            children: <Widget>[
-              // Background
-              Image.asset(AssetPaths.titleBgBase),
-              _LitImage(
-                color: orbColor,
-                imgSrc: AssetPaths.titleBgReceive,
-                lightAmt: _finalReceiveLightAmt,
-              ),
-              // Middle-ground
-              _LitImage(
-                color: orbColor,
-                imgSrc: AssetPaths.titleMgBase,
-                lightAmt: _finalReceiveLightAmt,
-              ),
-              _LitImage(
-                color: orbColor,
-                imgSrc: AssetPaths.titleMgReceive,
-                lightAmt: _finalReceiveLightAmt,
-              ),
-              _LitImage(
-                color: emitColor,
-                imgSrc: AssetPaths.titleMgEmit,
-                lightAmt: _finalEmitLightAmt,
-              ),
-              // Foreground
-              Image.asset(AssetPaths.titleFgBase),
-              _LitImage(
-                color: orbColor,
-                imgSrc: AssetPaths.titleFgReceive,
-                lightAmt: _finalReceiveLightAmt,
-              ),
-              _LitImage(
-                color: emitColor,
-                imgSrc: AssetPaths.titleFgEmit,
-                lightAmt: _finalEmitLightAmt,
-              ),
-            ],
+    return Center(
+      child: Stack(
+        // Image Plans: Background, Middle-ground, Foreground
+        children: <Widget>[
+          // Background
+          Image.asset(AssetPaths.titleBgBase),
+          _LitImage(
+            color: orbColor,
+            imgSrc: AssetPaths.titleBgReceive,
+            lightAmt: _finalReceiveLightAmt,
           ),
-        ),
+          // Middle-ground
+          _LitImage(
+            color: orbColor,
+            imgSrc: AssetPaths.titleMgBase,
+            lightAmt: _finalReceiveLightAmt,
+          ),
+          _LitImage(
+            color: orbColor,
+            imgSrc: AssetPaths.titleMgReceive,
+            lightAmt: _finalReceiveLightAmt,
+          ),
+          _LitImage(
+            color: emitColor,
+            imgSrc: AssetPaths.titleMgEmit,
+            lightAmt: _finalEmitLightAmt,
+          ),
+          // Foreground
+          Image.asset(AssetPaths.titleFgBase),
+          _LitImage(
+            color: orbColor,
+            imgSrc: AssetPaths.titleFgReceive,
+            lightAmt: _finalReceiveLightAmt,
+          ),
+          _LitImage(
+            color: emitColor,
+            imgSrc: AssetPaths.titleFgEmit,
+            lightAmt: _finalEmitLightAmt,
+          ),
+        ],
       ),
     );
   }
@@ -103,3 +101,51 @@ class _LitImage extends StatelessWidget {
     );
   }
 }
+
+// TODO: Move to FlutterWidgets repo
+// ?? new package extra_alignments.dart
+
+// SafeArea(
+//       child: Scaffold(
+//         backgroundColor: Colors.black,
+//         body: Stack(children: [
+//           TopLeft(
+//             child: Container(
+//               height: 100,
+//               width: 500,
+//               color: Colors.purple,
+//             ),
+//           ),
+//           TopCenter(
+//             child: Container(
+//               height: 100,
+//               width: 900,
+//               color: Colors.orange,
+//             ),
+//           ),
+//           TopRight(child: Text("Top Right")),
+//           CenterLeft(
+//             child: Container(
+//               height: 860,
+//               width: 100,
+//               color: Colors.blueAccent,
+//             ),
+//           ),
+//           CenterRight(child: Text("Center Right")),
+//           Positioned(
+//             top: 870,
+//             left: 100,
+//             child: BottomLeft(
+//               child: Padding(
+//                 padding: const EdgeInsets.only(left: 8.0),
+//                 child: Container(
+//                   height: 100,
+//                   width: 575,
+//                   color: Colors.amberAccent,
+//                 ),
+//               ),
+//             ),
+//           ),
+//           BottomCenter(child: Text("Bottom Center")),
+//           BottomRight(child: Text("Bottom Right")),
+//         ]),
