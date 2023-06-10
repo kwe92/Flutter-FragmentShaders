@@ -52,6 +52,7 @@ class TitleScreenUi extends DifficultyOptions {
               ),
             ),
 // Difficulty Btns
+// TODO: Implement _DifficultyBtns
             // BottomLeft(
             //   child: UiScaler(
             //     child: _DifficultyBtns,
@@ -111,6 +112,7 @@ class _DifficultyBtns extends DifficultyOptions {
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // TODO: Added buttons
           // _DifficultyBtn
         ],
       );
