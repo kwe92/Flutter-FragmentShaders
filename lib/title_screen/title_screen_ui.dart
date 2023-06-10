@@ -17,7 +17,7 @@ import "package:focusable_control_builder/focusable_control_builder.dart";
 abstract class DifficultyOptions extends StatelessWidget {
   final int difficulty;
   final void Function(int difficulty) onDifficultyPressed;
-  final void Function(int difficulty) onDifficultyFocused;
+  final void Function(int? difficulty) onDifficultyFocused;
 
   const DifficultyOptions({
     required this.difficulty,
@@ -52,13 +52,26 @@ class TitleScreenUi extends DifficultyOptions {
               ),
             ),
 // Difficulty Btns
-// TODO: Implement _DifficultyBtns
-            // BottomLeft(
-            //   child: UiScaler(
-            //     child: _DifficultyBtns,
-            //     alignment: Alignment.bottomLeft,
-            //   ),
-            // )
+            BottomLeft(
+              child: UiScaler(
+                child: _DifficultyBtns(
+                  difficulty: difficulty,
+                  onDifficultyPressed: onDifficultyPressed,
+                  onDifficultyFocused: onDifficultyFocused,
+                ),
+                alignment: Alignment.bottomLeft,
+              ),
+            ),
+            // Start Button
+            BottomRight(
+              child: UiScaler(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20, right: 40),
+                  child: _StartButton(onPressed: () {}),
+                ),
+              ),
+            )
           ],
         ),
       );
@@ -112,8 +125,30 @@ class _DifficultyBtns extends DifficultyOptions {
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // TODO: Added buttons
-          // _DifficultyBtn
+          _DifficultyBtn(
+            label: "Casual",
+            selected: difficulty == 0,
+            onPressed: () => onDifficultyPressed(0),
+            onHover: (over) => onDifficultyFocused(
+              over ? 0 : null,
+            ),
+          ),
+          _DifficultyBtn(
+            label: "Normal",
+            selected: difficulty == 1,
+            onPressed: () => onDifficultyPressed(1),
+            onHover: (over) => onDifficultyFocused(
+              over ? 1 : null,
+            ),
+          ),
+          _DifficultyBtn(
+            label: "Hardcore",
+            selected: difficulty == 2,
+            onPressed: () => onDifficultyPressed(2),
+            onHover: (over) => onDifficultyFocused(
+              over ? 2 : null,
+            ),
+          ),
         ],
       );
 }
@@ -123,7 +158,13 @@ class _DifficultyBtn extends StatelessWidget {
   final bool selected;
   final VoidCallback onPressed;
   final void Function(bool hasFocus) onHover;
-  const _DifficultyBtn({required this.label, required this.selected, required this.onPressed, required this.onHover, super.key});
+  const _DifficultyBtn({
+    required this.label,
+    required this.selected,
+    required this.onPressed,
+    required this.onHover,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => FocusableControlBuilder(
@@ -171,4 +212,15 @@ class _DifficultyBtn extends StatelessWidget {
         ),
         onPressed: () {},
       );
+}
+
+class _StartButton extends StatelessWidget {
+  final Function onPressed;
+  const _StartButton({
+    required this.onPressed,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => throw UnimplementedError();
 }
