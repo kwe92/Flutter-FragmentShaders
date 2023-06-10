@@ -68,7 +68,7 @@ class TitleScreen extends StatelessWidget {
                   child: TitleScreenUi(
                     difficulty: difficultyModel.diffiuculty,
                     onDifficultyPressed: difficultyModel.handleDifficultyPressed,
-                    onDifficultyFocused: difficultyModel.handleDifficultyPressed,
+                    onDifficultyFocused: difficultyModel.handleDifficultyFocused,
                   ),
                 )
               ],
