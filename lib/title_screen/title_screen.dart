@@ -4,6 +4,7 @@
 // ?? new package extra_alignments.dart
 import 'package:extra_alignments/extra_alignments.dart';
 import 'package:flutter/material.dart';
+import 'package:next_gen_ui/title_screen/title_screen_ui.dart';
 
 import '../assets.dart';
 import '../styles.dart';
@@ -18,50 +19,57 @@ class TitleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final orbColor = AppColors.orbColors[0];
-    // final emitColor = AppColors.emitColors[0];
-    final orbColor = Colors.blueAccent;
-    final emitColor = Color.fromRGBO(255, 103, 1, 1);
-    return Center(
-      child: Stack(
-        // Image Plans: Background, Middle-ground, Foreground
-        children: <Widget>[
-          // Background
-          Image.asset(AssetPaths.titleBgBase),
-          _LitImage(
-            color: orbColor,
-            imgSrc: AssetPaths.titleBgReceive,
-            lightAmt: _finalReceiveLightAmt,
+    final orbColor = AppColors.orbColors[2];
+    final emitColor = AppColors.emitColors[2];
+
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Stack(
+            // Image Plans: Background, Middle-ground, Foreground
+            children: <Widget>[
+              // Background
+              Image.asset(AssetPaths.titleBgBase),
+              _LitImage(
+                color: orbColor,
+                imgSrc: AssetPaths.titleBgReceive,
+                lightAmt: _finalReceiveLightAmt,
+              ),
+              // Middle-ground
+              _LitImage(
+                color: orbColor,
+                imgSrc: AssetPaths.titleMgBase,
+                lightAmt: _finalReceiveLightAmt,
+              ),
+              _LitImage(
+                color: orbColor,
+                imgSrc: AssetPaths.titleMgReceive,
+                lightAmt: _finalReceiveLightAmt,
+              ),
+              _LitImage(
+                color: emitColor,
+                imgSrc: AssetPaths.titleMgEmit,
+                lightAmt: _finalEmitLightAmt,
+              ),
+              // Foreground
+              Image.asset(AssetPaths.titleFgBase),
+              _LitImage(
+                color: orbColor,
+                imgSrc: AssetPaths.titleFgReceive,
+                lightAmt: _finalReceiveLightAmt,
+              ),
+              _LitImage(
+                color: emitColor,
+                imgSrc: AssetPaths.titleFgEmit,
+                lightAmt: _finalEmitLightAmt,
+              ),
+              // TODO: Uncomment after creating buttons
+              // Positioned.fill(
+              //   child: TitleScreenUi(),
+              // )
+            ],
           ),
-          // Middle-ground
-          _LitImage(
-            color: orbColor,
-            imgSrc: AssetPaths.titleMgBase,
-            lightAmt: _finalReceiveLightAmt,
-          ),
-          _LitImage(
-            color: orbColor,
-            imgSrc: AssetPaths.titleMgReceive,
-            lightAmt: _finalReceiveLightAmt,
-          ),
-          _LitImage(
-            color: emitColor,
-            imgSrc: AssetPaths.titleMgEmit,
-            lightAmt: _finalEmitLightAmt,
-          ),
-          // Foreground
-          Image.asset(AssetPaths.titleFgBase),
-          _LitImage(
-            color: orbColor,
-            imgSrc: AssetPaths.titleFgReceive,
-            lightAmt: _finalReceiveLightAmt,
-          ),
-          _LitImage(
-            color: emitColor,
-            imgSrc: AssetPaths.titleFgEmit,
-            lightAmt: _finalEmitLightAmt,
-          ),
-        ],
+        ),
       ),
     );
   }
