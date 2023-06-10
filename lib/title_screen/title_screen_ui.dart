@@ -117,8 +117,56 @@ class _DifficultyBtns extends DifficultyOptions {
 }
 
 class _DifficultyBtn extends StatelessWidget {
-  const _DifficultyBtn({super.key});
+  final String label;
+  final bool selected;
+  final VoidCallback onPressed;
+  final void Function(bool hasFocus) onHover;
+  const _DifficultyBtn({required this.label, required this.selected, required this.onPressed, required this.onHover, super.key});
 
   @override
-  Widget build(BuildContext context) => throw UnimplementedError();
+  Widget build(BuildContext context) => FocusableControlBuilder(
+        builder: (_, state) => Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+              width: 250,
+              height: 60,
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF00D1FF).withOpacity(0.1),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 5,
+                      ),
+                    ),
+                  ),
+                  if (state.isHovered || state.isFocused) ...[
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF00D1FF).withOpacity(0.1),
+                      ),
+                    )
+                  ],
+                  // cross-hairs (selected state)
+                  if (selected) ...[
+                    CenterLeft(
+                      child: Image.asset(AssetPaths.titleSelectedLeft),
+                    ),
+                    CenterRight(
+                      child: Image.asset(AssetPaths.titleSelectedRight),
+                    )
+                  ],
+                  // Label
+                  Center(
+                    child: Text(
+                      label.toUpperCase(),
+                      style: TextStyles.btn,
+                    ),
+                  )
+                ],
+              )),
+        ),
+        onPressed: () {},
+      );
 }
