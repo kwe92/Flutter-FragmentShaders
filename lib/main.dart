@@ -5,7 +5,6 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:next_gen_ui/global_types.dart';
 import 'package:next_gen_ui/models/difficulty_model.dart';
 import 'package:next_gen_ui/title_screen/title_screen.dart';
 import 'package:provider/provider.dart';
@@ -16,22 +15,21 @@ void main() {
     WidgetsFlutterBinding.ensureInitialized();
     setWindowMinSize(const Size(800, 500));
   }
-  runApp(const NextGenApp());
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: _getDifficultyModel),
+    ], child: const NextGenApp()),
+  );
 }
 
 class NextGenApp extends StatelessWidget {
   const NextGenApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: <ChangeNotifierProvider>[
-          CNP(create: _getDifficultyModel),
-        ],
-        child: MaterialApp(
-          themeMode: ThemeMode.dark,
-          darkTheme: ThemeData(brightness: Brightness.dark),
-          home: const TitleScreen(),
-        ),
+  Widget build(BuildContext context) => MaterialApp(
+        themeMode: ThemeMode.dark,
+        darkTheme: ThemeData(brightness: Brightness.dark),
+        home: const TitleScreen(),
       );
 }
 
