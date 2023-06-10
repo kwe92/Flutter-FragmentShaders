@@ -4,7 +4,9 @@
 // ?? new package extra_alignments.dart
 import 'package:extra_alignments/extra_alignments.dart';
 import 'package:flutter/material.dart';
+import 'package:next_gen_ui/models/difficulty_model.dart';
 import 'package:next_gen_ui/title_screen/title_screen_ui.dart';
+import 'package:provider/provider.dart';
 
 import '../assets.dart';
 import '../styles.dart';
@@ -19,55 +21,58 @@ class TitleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orbColor = AppColors.orbColors[2];
-    final emitColor = AppColors.emitColors[2];
-
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: Stack(
-            // Image Plans: Background, Middle-ground, Foreground
-            children: <Widget>[
-              // Background
-              Image.asset(AssetPaths.titleBgBase),
-              _LitImage(
-                color: orbColor,
-                imgSrc: AssetPaths.titleBgReceive,
-                lightAmt: _finalReceiveLightAmt,
-              ),
-              // Middle-ground
-              _LitImage(
-                color: orbColor,
-                imgSrc: AssetPaths.titleMgBase,
-                lightAmt: _finalReceiveLightAmt,
-              ),
-              _LitImage(
-                color: orbColor,
-                imgSrc: AssetPaths.titleMgReceive,
-                lightAmt: _finalReceiveLightAmt,
-              ),
-              _LitImage(
-                color: emitColor,
-                imgSrc: AssetPaths.titleMgEmit,
-                lightAmt: _finalEmitLightAmt,
-              ),
-              // Foreground
-              Image.asset(AssetPaths.titleFgBase),
-              _LitImage(
-                color: orbColor,
-                imgSrc: AssetPaths.titleFgReceive,
-                lightAmt: _finalReceiveLightAmt,
-              ),
-              _LitImage(
-                color: emitColor,
-                imgSrc: AssetPaths.titleFgEmit,
-                lightAmt: _finalEmitLightAmt,
-              ),
-              // TODO: Uncomment after creating buttons
-              // Positioned.fill(
-              //   child: TitleScreenUi(),
-              // )
-            ],
+          child: Consumer(
+            builder: (context, DifficultyModel difficultyModel, _) => Stack(
+              // Image Plans: Background, Middle-ground, Foreground
+              children: <Widget>[
+                // Background
+                Image.asset(AssetPaths.titleBgBase),
+                _LitImage(
+                  color: difficultyModel.orbColor,
+                  imgSrc: AssetPaths.titleBgReceive,
+                  lightAmt: _finalReceiveLightAmt,
+                ),
+                // Middle-ground
+                _LitImage(
+                  color: difficultyModel.orbColor,
+                  imgSrc: AssetPaths.titleMgBase,
+                  lightAmt: _finalReceiveLightAmt,
+                ),
+                _LitImage(
+                  color: difficultyModel.orbColor,
+                  imgSrc: AssetPaths.titleMgReceive,
+                  lightAmt: _finalReceiveLightAmt,
+                ),
+                _LitImage(
+                  color: difficultyModel.emiteColor,
+                  imgSrc: AssetPaths.titleMgEmit,
+                  lightAmt: _finalEmitLightAmt,
+                ),
+                // Foreground
+                Image.asset(AssetPaths.titleFgBase),
+                _LitImage(
+                  color: difficultyModel.orbColor,
+                  imgSrc: AssetPaths.titleFgReceive,
+                  lightAmt: _finalReceiveLightAmt,
+                ),
+                _LitImage(
+                  color: difficultyModel.emiteColor,
+                  imgSrc: AssetPaths.titleFgEmit,
+                  lightAmt: _finalEmitLightAmt,
+                ),
+                // TODO: Uncomment after creating buttons
+                Positioned.fill(
+                  child: TitleScreenUi(
+                    difficulty: difficultyModel.diffiuculty,
+                    onDifficultyPressed: difficultyModel.handleDifficultyPressed,
+                    onDifficultyFocused: difficultyModel.handleDifficultyPressed,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
