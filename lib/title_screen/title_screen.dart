@@ -24,8 +24,8 @@ class TitleScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: Consumer(
-            builder: (context, DifficultyModel difficultyModel, _) => Stack(
+          child: Consumer(builder: (context, DifficultyModel difficultyModel, _) {
+            return Stack(
               // Image Plans: Background, Middle-ground, Foreground
               children: <Widget>[
                 // Background
@@ -72,8 +72,8 @@ class TitleScreen extends StatelessWidget {
                   ),
                 )
               ],
-            ),
-          ),
+            );
+          }),
         ),
       ),
     );

@@ -68,7 +68,7 @@ class TitleScreenUi extends DifficultyOptions {
                 alignment: Alignment.bottomRight,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 20, right: 40),
-                  child: _StartButton(onPressed: () {}),
+                  // child: _StartButton(onPressed: () {}),
                 ),
               ),
             )
@@ -214,13 +214,22 @@ class _DifficultyBtn extends StatelessWidget {
       );
 }
 
+typedef VoidCallback = void Function();
+
 class _StartButton extends StatelessWidget {
-  final Function onPressed;
+  final VoidCallback onPressed;
   const _StartButton({
     required this.onPressed,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) => throw UnimplementedError();
+  Widget build(BuildContext context) => FocusableControlBuilder(
+      // Changes what the cursor looks like when you over over a widget
+      cursor: SystemMouseCursors.click,
+      onPressed: onPressed,
+      // TODO: Start building the build method
+      builder: (_, state) {
+        return SizedBox();
+      });
 }
