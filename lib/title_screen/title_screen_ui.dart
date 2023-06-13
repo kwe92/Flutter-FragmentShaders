@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:extra_alignments/extra_alignments.dart';
 
 import 'package:gap/gap.dart';
+import 'package:next_gen_ui/models/start_button_model.dart';
+import 'package:provider/provider.dart';
 
 import '../assets.dart';
 
@@ -68,7 +70,7 @@ class TitleScreenUi extends DifficultyOptions {
                 alignment: Alignment.bottomRight,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 20, right: 40),
-                  // child: _StartButton(onPressed: () {}),
+                  child: _StartButton(onPressed: () {}),
                 ),
               ),
             )
@@ -225,11 +227,47 @@ class _StartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FocusableControlBuilder(
-      // Changes what the cursor looks like when you over over a widget
+      // Changes what the cursor looks like when you hover over a Widget
       cursor: SystemMouseCursors.click,
       onPressed: onPressed,
-      // TODO: Start building the build method
-      builder: (_, state) {
-        return SizedBox();
-      });
+      builder: (_, FocusableControlState state) => Consumer(
+            builder: (BuildContext context, StartButtonModel startBtnModel, _) {
+              if ((state.isHovered || state.isFocused) &&
+                  !startBtnModel.wasHovered &&
+                  startBtnModel.btnAnim?.status != AnimationStatus.forward) {
+                startBtnModel.btnAnim?.forward(from: 0);
+              }
+              startBtnModel.setWasHovered((state.isHovered || state.isFocused));
+              return SizedBox(
+                width: 520,
+                height: 100,
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(
+                      child: Image.asset(AssetPaths.titleStartBtn),
+                    ),
+                    if ((state.isHovered || state.isFocused)) ...[
+                      Positioned.fill(
+                        child: Image.asset(AssetPaths.titleStartBtnHover),
+                      ),
+                    ],
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Text(
+                            'START MISSION',
+                            style: TextStyles.btn.copyWith(
+                              fontSize: 24,
+                              letterSpacing: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ));
 }
