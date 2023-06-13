@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:next_gen_ui/styles.dart';
 
 class DifficultyModel extends ChangeNotifier {
-  int _difficulty = 0;
+  int _difficulty = 1;
   int? _difficultyOverride;
 
   int get diffiuculty => this._difficulty;
